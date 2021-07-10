@@ -1,10 +1,7 @@
 import os
 import requests
 import urllib.request
-# import collections
 import datetime
-import time
-import sys
 
 output_path = os.path.join(os.getcwd(), 'output.json')
 download_path = os.path.join(os.getcwd(), 'downloads')
