@@ -3,11 +3,13 @@ import requests
 import urllib.request
 # import collections
 import datetime
+import time
+import sys
 
 output_path = os.path.join(os.getcwd(), 'output.json')
 download_path = os.path.join(os.getcwd(), 'downloads')
 log_path = os.path.join(os.getcwd(), 'all.log')
-disk_file_path = 'vk_img/'
+ydisk_file_path = 'vk_img/'
 
 with open('vk_secret.txt', 'r') as file_object:
     vk_token = file_object.read().strip()
@@ -47,6 +49,7 @@ class VkDownloader:
             upload_data[photo_name] = local_path
             urllib.request.urlretrieve(link, local_path)
             datetime_object = datetime.datetime.now()
+            print(f'{datetime_object}: Фото {photo_name} загружено на локальный диск в папку {download_path}')
             self.logger(f'{datetime_object}: Фото {photo_name} загружено на локальный диск в папку {download_path} \n')
 
         with open(output_path, "w") as output:
@@ -64,10 +67,10 @@ class VkDownloader:
             'Authorization': 'OAuth {}'.format(yd_token)
         }
 
-    def get_upload_link(self, disk_file_path):
+    def get_upload_link(self, ydisk_file_path):
         upload_url = "https://cloud-api.yandex.net/v1/disk/resources/upload"
         headers = self.get_ya_headers()
-        params = {"path": disk_file_path, "overwrite": "true"}
+        params = {"path": ydisk_file_path, "overwrite": "true"}
         response = requests.get(upload_url, headers=headers, params=params)
         href = response.json()['href']
         return href
@@ -75,13 +78,13 @@ class VkDownloader:
     def upload_file(self, upload_data):
         for ind, elm in enumerate(upload_data):
             for key, value in elm.items():
-                href = self.get_upload_link(disk_file_path+key)
+                href = self.get_upload_link(ydisk_file_path + key)
                 response = requests.put(href, data=open(value, 'rb'))
                 response.raise_for_status()
                 if response.status_code == 201:
                     datetime_object = datetime.datetime.now()
-                    print(f'{datetime_object}: Файл "{key}" загружен на Yandex.Disk в папку {disk_file_path}')
-                    self.logger(f'{datetime_object}: Файл "{key}" загружен на Yandex.Disk в папку {disk_file_path} \n')
+                    print(f'{datetime_object}: Фото "{key}" загружено на Yandex.Disk в папку {ydisk_file_path}')
+                    self.logger(f'{datetime_object}: Фото "{key}" загружено на Yandex.Disk в папку {ydisk_file_path} \n')
 
 if __name__ == '__main__':
     vk = VkDownloader(10406825, vk_token, yd_token)
