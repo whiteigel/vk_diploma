@@ -2,6 +2,8 @@ import os
 import requests
 import urllib.request
 import datetime
+from pprint import pprint
+import collections
 
 output_path = os.path.join(os.getcwd(), 'output.json')
 download_path = os.path.join(os.getcwd(), 'downloads')
@@ -24,6 +26,7 @@ class VkDownloader:
         json_list = []
         json_data = {}
         upload_data = {}
+        likes_list = []
         URL = 'https://api.vk.com/method/photos.get'
         params = {
             'user_id': id,
@@ -36,11 +39,21 @@ class VkDownloader:
         response = requests.get(URL, params=params)
         res = response.json()['response']['items']
         for ind, elm in enumerate(res):
-            likes = str(elm['likes']['count'])
             link = elm['sizes'][-1]['url']
             size_type = elm['sizes'][-1]['type']
-            photo_name = likes + '.jpg'
-            json_data = {'file_name':photo_name, 'size':size_type}
+            likes = str(elm['likes']['count'])
+            likes_list.append(likes)
+            # duplicates renaming
+            new_likes_list = []
+            for ind, elm in enumerate(likes_list):
+                totalcount = likes_list.count(elm)
+                count = likes_list[:ind].count(elm)
+                new_likes_list.append(elm + '_' + str(count) if totalcount > 1 else elm)
+
+            for ind, elm in enumerate(new_likes_list):
+                photo_name = elm + '.jpg'
+
+            json_data = {'file_name': photo_name, 'size': size_type}
             json_list.append(json_data)
             local_path = os.path.join(download_path, photo_name)
             upload_data[photo_name] = local_path
@@ -86,3 +99,50 @@ class VkDownloader:
 if __name__ == '__main__':
     vk = VkDownloader(10406825, vk_token, yd_token)
     vk.upload_file(vk.get_images_from_vk(10406825, vk_token))
+
+# sandbox
+# ------------------
+# json_list = []
+# json_data = {}
+# upload_data = {}
+# likes_list = []
+# URL = 'https://api.vk.com/method/photos.get'
+# params = {
+#     'user_id': 10406825,
+#     'access_token': vk_token,
+#     'v':'5.77',
+#     'album_id': 'profile',
+#     'extended': 1,
+#     'photo_sizes': 1
+# }
+# response = requests.get(URL, params=params)
+# res = response.json()['response']['items']
+# for ind, elm in enumerate(res):
+#     link = elm['sizes'][-1]['url']
+#     size_type = elm['sizes'][-1]['type']
+#     likes = str(elm['likes']['count'])
+#     likes_list.append(likes)
+#
+#     new_likes_list = []
+#     for ind, elm in enumerate(likes_list):
+#         totalcount = likes_list.count(elm)
+#         count = likes_list[:ind].count(elm)
+#         new_likes_list.append(elm + '_' + str(count) if totalcount > 1 else elm)
+#
+#
+#     for ind, elm in enumerate(new_likes_list):
+    #     photo_name = elm + '.jpg'
+    # json_data = {'file_name':photo_name, 'size':size_type}
+    # json_list.append(json_data)
+    # local_path = os.path.join(download_path, photo_name)
+    # upload_data[photo_name] = local_path
+    # urllib.request.urlretrieve(link, local_path)
+    # datetime_object = datetime.datetime.now()
+    # print(f'{datetime_object}: Фото {photo_name} загружено на локальный диск в папку {download_path}')
+
+# print(likes_list)
+# print(len(likes_list))
+# print(new_likes_list)
+# print(len(new_likes_list))
+# pprint(upload_data)
+# print(len(upload_data))
