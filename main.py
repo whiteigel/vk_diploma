@@ -1,7 +1,8 @@
 import os
 import requests
-from pprint import pprint
 import urllib.request
+# import collections
+import datetime
 
 output_path = os.path.join(os.getcwd(), 'output.json')
 download_path = os.path.join(os.getcwd(), 'downloads')
@@ -45,12 +46,17 @@ class VkDownloader:
             local_path = os.path.join(download_path, photo_name)
             upload_data[photo_name] = local_path
             urllib.request.urlretrieve(link, local_path)
-            log_item = f'Фото {photo_name} загружено на локальный диск в папку {download_path} \n'
-            with open(log_path, "a") as log:
-                log.writelines(str(log_item))
+            datetime_object = datetime.datetime.now()
+            self.logger(f'{datetime_object}: Фото {photo_name} загружено на локальный диск в папку {download_path} \n')
+
         with open(output_path, "w") as output:
             output.write(str(json_list))
         return [upload_data]
+
+    def logger(self, message):
+        log_item = message
+        with open(log_path, "a") as log:
+            log.writelines(str(log_item))
 
     def get_ya_headers(self):
         return {
@@ -73,10 +79,9 @@ class VkDownloader:
                 response = requests.put(href, data=open(value, 'rb'))
                 response.raise_for_status()
                 if response.status_code == 201:
-                    print(f'Файл "{key}" загружен на Yandex.Disk в папку {disk_file_path}')
-                    log_item = f'Файл "{key}" загружен на Yandex.Disk в папку {disk_file_path} \n'
-                    with open(log_path, "a") as log:
-                        log.writelines(str(log_item))
+                    datetime_object = datetime.datetime.now()
+                    print(f'{datetime_object}: Файл "{key}" загружен на Yandex.Disk в папку {disk_file_path}')
+                    self.logger(f'{datetime_object}: Файл "{key}" загружен на Yandex.Disk в папку {disk_file_path} \n')
 
 if __name__ == '__main__':
     vk = VkDownloader(10406825, vk_token, yd_token)
