@@ -17,16 +17,20 @@ with open('yd_secret.txt', 'r') as file_object:
     yd_token = file_object.read().strip()
 
 class VkDownloader:
-    def __init__(self, vk_id, vk_token, yd_token):
+    def __init__(self, vk_id, vk_token):
         self.id = vk_id
         self.vk_token = vk_token
-        self.yd_token = yd_token
+        self.res = []
+        self.new_likes_list  = []
+        self.link_list = []
+        self.upload_list = []
+        self.upload_data = []
+        self.likes_list = []
+        self.json_list = []
+        self.json_data = {}
+        self.like_data = []
 
-    def get_images_from_vk(self, id, token):
-        json_list = []
-        json_data = {}
-        upload_data = {}
-        likes_list = []
+    def data_parser(self, id, token):
         URL = 'https://api.vk.com/method/photos.get'
         params = {
             'user_id': id,
@@ -37,45 +41,81 @@ class VkDownloader:
             'photo_sizes': 1
         }
         response = requests.get(URL, params=params)
-        res = response.json()['response']['items']
-        for ind, elm in enumerate(res):
+        self.res = response.json()['response']['items']
+        return self.res
+
+    def rename_dups(self):
+        init_likes_list = []
+        for ind, elm in enumerate(self.res):
+            likes = str(elm['likes']['count'])
+            init_likes_list.append(likes)
+        for ind, elm in enumerate(init_likes_list):
+            totalcount = init_likes_list.count(elm)
+            count = init_likes_list[:ind].count(elm)
+            self.new_likes_list.append(elm + '_' + str(count) if totalcount > 1 else elm)
+        return self.new_likes_list
+
+    def make_link_list(self):
+        for ind, elm in enumerate(self.res):
             link = elm['sizes'][-1]['url']
             size_type = elm['sizes'][-1]['type']
-            likes = str(elm['likes']['count'])
-            likes_list.append(likes)
-            # duplicates renaming
-            new_likes_list = []
-            for ind, elm in enumerate(likes_list):
-                totalcount = likes_list.count(elm)
-                count = likes_list[:ind].count(elm)
-                new_likes_list.append(elm + '_' + str(count) if totalcount > 1 else elm)
+            width = elm['sizes'][-1]['width']
+            height = elm['sizes'][-1]['height']
+            self.like_data = [size_type, width, height, link]
+            self.likes_list.append(self.like_data)
+        zipped_data = zip(self.new_likes_list, self.likes_list)
+        zipped_data = list(zipped_data)
+        for ind, elm in enumerate(zipped_data):
+            like_data = [elm[0], elm[1][0], elm[1][1], elm[1][2], elm[1][-1]]
+            self.link_list.append(like_data)
 
-            for ind, elm in enumerate(new_likes_list):
-                photo_name = elm + '.jpg'
+        self.link_list = sorted(self.link_list, key=lambda x: x[2], reverse=True)
+        return self.link_list
 
-            json_data = {'file_name': photo_name, 'size': size_type}
-            json_list.append(json_data)
-            local_path = os.path.join(download_path, photo_name)
-            upload_data[photo_name] = local_path
+    def data_download(self):
+        for item in self.link_list:
+            file_name = item[0]+'.jpg'
+            link = item[4]
+            size_type = item[1]
+            local_path = os.path.join(download_path, file_name)
+
+            upload_data_item = [file_name, local_path]
+            self.upload_data.append(upload_data_item)
+
             urllib.request.urlretrieve(link, local_path)
-            datetime_object = datetime.datetime.now()
-            print(f'{datetime_object}: Фото {photo_name} загружено на локальный диск в папку {download_path}')
-            self.logger(f'{datetime_object}: Фото {photo_name} загружено на локальный диск в папку {download_path} \n')
+            log_time = datetime.datetime.now()
+            print(f'{log_time}: Фото {file_name} загружено на локальный диск в папку {download_path}')
+            self.logger(f'{log_time}: Фото {file_name} загружено на локальный диск в папку {download_path} \n')
+            json_data = {'file_name': file_name, 'size': size_type}
+            self.json_list.append(json_data)
 
         with open(output_path, "w") as output:
-            output.write(str(json_list))
-        return [upload_data]
+            output.write(str(self.json_list))
+        return self.upload_data
+
+    def upload_best_list(self, number):
+        range = int(number)
+        for ind, elm in enumerate(self.upload_data):
+            if ind <= range-1:
+                self.upload_list.append(elm)
+        return self.upload_list
 
     def logger(self, message):
         log_item = message
         with open(log_path, "a") as log:
             log.writelines(str(log_item))
 
+class YaUploader:
+    def __init__(self, yd_token):
+        self.yd_token = yd_token
+
     def get_ya_headers(self):
         return {
             'Content-Type': 'application/json',
             'Authorization': 'OAuth {}'.format(yd_token)
         }
+
+    # create folder function goes here. Not working.
 
     def get_upload_link(self, ydisk_file_path):
         upload_url = "https://cloud-api.yandex.net/v1/disk/resources/upload"
@@ -85,64 +125,33 @@ class VkDownloader:
         href = response.json()['href']
         return href
 
-    def upload_file(self, upload_data):
-        for ind, elm in enumerate(upload_data):
-            for key, value in elm.items():
-                href = self.get_upload_link(ydisk_file_path + key)
-                response = requests.put(href, data=open(value, 'rb'))
-                response.raise_for_status()
-                if response.status_code == 201:
-                    datetime_object = datetime.datetime.now()
-                    print(f'{datetime_object}: Фото "{key}" загружено на Yandex.Disk в папку {ydisk_file_path}')
-                    self.logger(f'{datetime_object}: Фото "{key}" загружено на Yandex.Disk в папку {ydisk_file_path} \n')
+    def upload_file(self, upload_list):
+        for elm in upload_list:
+            href = self.get_upload_link(ydisk_file_path + elm[0])
+            response = requests.put(href, data=open(elm[1], 'rb'))
+            response.raise_for_status()
+            if response.status_code == 201:
+                log_time = datetime.datetime.now()
+                print(f'{log_time}: Фото "{elm[0]}" загружено на Yandex.Disk в папку {ydisk_file_path}')
+                self.logger(f'{log_time}: Фото "{elm[0]}" загружено на Yandex.Disk в папку {ydisk_file_path} \n')
+
+    def logger(self, message):
+        log_item = message
+        with open(log_path, "a") as log:
+            log.writelines(str(log_item))
+
+class BackupMain(VkDownloader,YaUploader):
+
+    def __init__ (self, vk_token, yd_token):
+        vk_token = vk_token
+        yd_token = yd_token
 
 if __name__ == '__main__':
-    vk = VkDownloader(10406825, vk_token, yd_token)
-    vk.upload_file(vk.get_images_from_vk(10406825, vk_token))
-
-# sandbox
-# ------------------
-# json_list = []
-# json_data = {}
-# upload_data = {}
-# likes_list = []
-# URL = 'https://api.vk.com/method/photos.get'
-# params = {
-#     'user_id': 10406825,
-#     'access_token': vk_token,
-#     'v':'5.77',
-#     'album_id': 'profile',
-#     'extended': 1,
-#     'photo_sizes': 1
-# }
-# response = requests.get(URL, params=params)
-# res = response.json()['response']['items']
-# for ind, elm in enumerate(res):
-#     link = elm['sizes'][-1]['url']
-#     size_type = elm['sizes'][-1]['type']
-#     likes = str(elm['likes']['count'])
-#     likes_list.append(likes)
-#
-#     new_likes_list = []
-#     for ind, elm in enumerate(likes_list):
-#         totalcount = likes_list.count(elm)
-#         count = likes_list[:ind].count(elm)
-#         new_likes_list.append(elm + '_' + str(count) if totalcount > 1 else elm)
-#
-#
-#     for ind, elm in enumerate(new_likes_list):
-    #     photo_name = elm + '.jpg'
-    # json_data = {'file_name':photo_name, 'size':size_type}
-    # json_list.append(json_data)
-    # local_path = os.path.join(download_path, photo_name)
-    # upload_data[photo_name] = local_path
-    # urllib.request.urlretrieve(link, local_path)
-    # datetime_object = datetime.datetime.now()
-    # print(f'{datetime_object}: Фото {photo_name} загружено на локальный диск в папку {download_path}')
-
-# print(likes_list)
-# print(len(likes_list))
-# print(new_likes_list)
-# print(len(new_likes_list))
-# pprint(upload_data)
-# print(len(upload_data))
+    # backup = BackupMain(vk_token, yd_token)
+    vk = VkDownloader(10406825, vk_token)
+    yd = YaUploader(yd_token)
+    print(vk.data_parser(10406825, vk_token))
+    print(vk.rename_dups())
+    print(vk.make_link_list())
+    print(vk.data_download())
+    print(yd.upload_file(vk.upload_best_list(5)))
