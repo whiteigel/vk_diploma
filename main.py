@@ -3,10 +3,10 @@ import requests
 import urllib.request
 import datetime
 
-output_path = os.path.join(os.getcwd(), 'output.json')
-download_path = os.path.join(os.getcwd(), 'downloads')
-log_path = os.path.join(os.getcwd(), 'all.log')
-ydisk_file_path = 'test'
+OUTPUT_PATH = os.path.join(os.getcwd(), 'output.json')
+DOWNLOAD_PATH = os.path.join(os.getcwd(), 'downloads')
+LOG_PATH = os.path.join(os.getcwd(), 'all.log')
+Y_DISK_PATH = 'test'
 
 with open('vk_secret.txt', 'r') as file_object:
     vk_token = file_object.read().strip()
@@ -43,15 +43,15 @@ class VkDownloader:
         self.res = response.json()['response']['items']
         return self.res
 
-    def rename_dups(self):
+    def rename_duplicates(self):
         init_likes_list = []
         for ind, elm in enumerate(self.res):
             likes = str(elm['likes']['count'])
             init_likes_list.append(likes)
         for ind, elm in enumerate(init_likes_list):
-            totalcount = init_likes_list.count(elm)
+            total_count = init_likes_list.count(elm)
             count = init_likes_list[:ind].count(elm)
-            self.new_likes_list.append(elm + '_' + str(count) if totalcount > 1 else elm)
+            self.new_likes_list.append(elm + '_' + str(count) if total_count > 1 else elm)
         return self.new_likes_list
 
     def make_link_list(self):
@@ -76,19 +76,19 @@ class VkDownloader:
             file_name = item[0]+'.jpg'
             link = item[4]
             size_type = item[1]
-            local_path = os.path.join(download_path, file_name)
+            local_path = os.path.join(DOWNLOAD_PATH, file_name)
 
             upload_data_item = [file_name, local_path]
             self.upload_data.append(upload_data_item)
 
             urllib.request.urlretrieve(link, local_path)
             log_time = datetime.datetime.now()
-            print(f'{log_time}: Фото {file_name} загружено на локальный диск в папку {download_path}')
-            self.logger(f'{log_time}: Фото {file_name} загружено на локальный диск в папку {download_path} \n')
+            print(f'{log_time}: Фото {file_name} загружено на локальный диск в папку {DOWNLOAD_PATH}')
+            self.logger(f'{log_time}: Фото {file_name} загружено на локальный диск в папку {DOWNLOAD_PATH} \n')
             json_data = {'file_name': file_name, 'size': size_type}
             self.json_list.append(json_data)
 
-        with open(output_path, "w") as output:
+        with open(OUTPUT_PATH, "w") as output:
             output.write(str(self.json_list))
         return self.upload_data
 
@@ -101,7 +101,7 @@ class VkDownloader:
 
     def logger(self, message):
         log_item = message
-        with open(log_path, "a") as log:
+        with open(LOG_PATH, "a") as log:
             log.writelines(str(log_item))
 
 
@@ -117,47 +117,44 @@ class YaUploader:
 
     # create folder function goes here. Not working.
 
-    def create_dir(self, ydisk_file_path):
+    def create_dir(self, Y_DISK_PATH):
         url = "https://cloud-api.yandex.net/v1/disk/resources"
         headers = self.get_ya_headers()
-        params = {"path": ydisk_file_path, "overwrite": "true"}
+        params = {"path": Y_DISK_PATH, "overwrite": "true"}
         response = requests.put(url, headers=headers, params=params)
         href = response.json()['href']
-        # message = response.json()['message']
         return href
 
-    def get_upload_link(self, ydisk_file_path):
+    def get_upload_link(self, Y_DISK_PATH):
         upload_url = "https://cloud-api.yandex.net/v1/disk/resources/upload"
         headers = self.get_ya_headers()
-        params = {"path": f"{ydisk_file_path}/", "overwrite": "true"}
+        params = {"path": Y_DISK_PATH, "overwrite": "true"}
         response = requests.get(upload_url, headers=headers, params=params)
-        # href = response.json()['href']
         href = response.json()
         return href
 
     def upload_file(self, upload_list):
         for elm in upload_list:
-            href = self.get_upload_link(f"{ydisk_file_path}/" + elm[0])
+            href = self.get_upload_link(f"{Y_DISK_PATH}/" + elm[0]).get("href", "")
             response = requests.put(href, data=open(elm[1], 'rb'))
             response.raise_for_status()
             if response.status_code == 201:
                 log_time = datetime.datetime.now()
-                print(f'{log_time}: Фото "{elm[0]}" загружено на Yandex.Disk в папку {ydisk_file_path}')
-                self.logger(f'{log_time}: Фото "{elm[0]}" загружено на Yandex.Disk в папку {ydisk_file_path} \n')
+                print(f'{log_time}: Фото "{elm[0]}" загружено на Yandex.Disk в папку {Y_DISK_PATH}')
+                self.logger(f'{log_time}: Фото "{elm[0]}" загружено на Yandex.Disk в папку {Y_DISK_PATH} \n')
 
     def logger(self, message):
         log_item = message
-        with open(log_path, "a") as log:
+        with open(LOG_PATH, "a") as log:
             log.writelines(str(log_item))
 
 
 if __name__ == '__main__':
-    vk = VkDownloader(538993, vk_token)
+    vk = VkDownloader(10406825, vk_token)
     yd = YaUploader(yd_token)
-    vk.data_parser(538993, vk_token)
-    vk.rename_dups()
+    vk.data_parser(10406825, vk_token)
+    vk.rename_duplicates()
     vk.make_link_list()
     vk.data_download()
-    print(yd.create_dir(ydisk_file_path))
-    print(yd.get_upload_link(ydisk_file_path))
+    yd.create_dir(Y_DISK_PATH)
     yd.upload_file(vk.upload_best_list(5))
