@@ -142,7 +142,6 @@ class YaUploader:
 
 
 if __name__ == '__main__':
-    # backup = BackupMain(vk_token, yd_token)
     vk = VkDownloader(538993, vk_token)
     yd = YaUploader(yd_token)
     vk.data_parser(538993, vk_token)
