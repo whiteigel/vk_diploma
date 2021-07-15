@@ -20,7 +20,7 @@ class VkDownloader:
         self.id = vk_id
         self.vk_token = vk_token
         self.res = []
-        self.new_likes_list  = []
+        self.new_likes_list = []
         self.link_list = []
         self.upload_list = []
         self.upload_data = []
@@ -139,12 +139,6 @@ class YaUploader:
         log_item = message
         with open(log_path, "a") as log:
             log.writelines(str(log_item))
-
-# class BackupMain(VkDownloader,YaUploader):
-#
-#     def __init__ (self, vk_token, yd_token):
-#         vk_token = vk_token
-#         yd_token = yd_token
 
 
 if __name__ == '__main__':
