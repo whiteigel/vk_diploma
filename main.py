@@ -115,8 +115,6 @@ class YaUploader:
             'Authorization': 'OAuth {}'.format(yd_token)
         }
 
-    # create folder function goes here. Not working.
-
     def create_dir(self, Y_DISK_PATH):
         url = "https://cloud-api.yandex.net/v1/disk/resources"
         headers = self.get_ya_headers()
