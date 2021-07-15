@@ -6,7 +6,7 @@ import datetime
 output_path = os.path.join(os.getcwd(), 'output.json')
 download_path = os.path.join(os.getcwd(), 'downloads')
 log_path = os.path.join(os.getcwd(), 'all.log')
-ydisk_file_path = 'vk_img/'
+ydisk_file_path = 'test'
 
 with open('vk_secret.txt', 'r') as file_object:
     vk_token = file_object.read().strip()
@@ -117,17 +117,27 @@ class YaUploader:
 
     # create folder function goes here. Not working.
 
+    def create_dir(self, ydisk_file_path):
+        url = "https://cloud-api.yandex.net/v1/disk/resources"
+        headers = self.get_ya_headers()
+        params = {"path": ydisk_file_path, "overwrite": "true"}
+        response = requests.put(url, headers=headers, params=params)
+        href = response.json()['href']
+        # message = response.json()['message']
+        return href
+
     def get_upload_link(self, ydisk_file_path):
         upload_url = "https://cloud-api.yandex.net/v1/disk/resources/upload"
         headers = self.get_ya_headers()
-        params = {"path": ydisk_file_path, "overwrite": "true"}
+        params = {"path": f"{ydisk_file_path}/", "overwrite": "true"}
         response = requests.get(upload_url, headers=headers, params=params)
-        href = response.json()['href']
+        # href = response.json()['href']
+        href = response.json()
         return href
 
     def upload_file(self, upload_list):
         for elm in upload_list:
-            href = self.get_upload_link(ydisk_file_path + elm[0])
+            href = self.get_upload_link(f"{ydisk_file_path}/" + elm[0])
             response = requests.put(href, data=open(elm[1], 'rb'))
             response.raise_for_status()
             if response.status_code == 201:
@@ -148,4 +158,6 @@ if __name__ == '__main__':
     vk.rename_dups()
     vk.make_link_list()
     vk.data_download()
+    print(yd.create_dir(ydisk_file_path))
+    print(yd.get_upload_link(ydisk_file_path))
     yd.upload_file(vk.upload_best_list(5))
