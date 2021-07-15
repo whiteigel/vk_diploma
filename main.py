@@ -2,8 +2,6 @@ import os
 import requests
 import urllib.request
 import datetime
-from pprint import pprint
-import collections
 
 output_path = os.path.join(os.getcwd(), 'output.json')
 download_path = os.path.join(os.getcwd(), 'downloads')
@@ -15,6 +13,7 @@ with open('vk_secret.txt', 'r') as file_object:
 
 with open('yd_secret.txt', 'r') as file_object:
     yd_token = file_object.read().strip()
+
 
 class VkDownloader:
     def __init__(self, vk_id, vk_token):
@@ -30,17 +29,17 @@ class VkDownloader:
         self.json_data = {}
         self.like_data = []
 
-    def data_parser(self, id, token):
-        URL = 'https://api.vk.com/method/photos.get'
+    def data_parser(self, vk_id, token):
+        url = 'https://api.vk.com/method/photos.get'
         params = {
-            'user_id': id,
+            'user_id': vk_id,
             'access_token': token,
-            'v':'5.77',
+            'v': '5.77',
             'album_id': 'profile',
             'extended': 1,
             'photo_sizes': 1
         }
-        response = requests.get(URL, params=params)
+        response = requests.get(url, params=params)
         self.res = response.json()['response']['items']
         return self.res
 
@@ -94,9 +93,9 @@ class VkDownloader:
         return self.upload_data
 
     def upload_best_list(self, number):
-        range = int(number)
+        photo_quantity = int(number)
         for ind, elm in enumerate(self.upload_data):
-            if ind <= range-1:
+            if ind <= photo_quantity-1:
                 self.upload_list.append(elm)
         return self.upload_list
 
@@ -104,6 +103,7 @@ class VkDownloader:
         log_item = message
         with open(log_path, "a") as log:
             log.writelines(str(log_item))
+
 
 class YaUploader:
     def __init__(self, yd_token):
@@ -140,18 +140,19 @@ class YaUploader:
         with open(log_path, "a") as log:
             log.writelines(str(log_item))
 
-class BackupMain(VkDownloader,YaUploader):
+# class BackupMain(VkDownloader,YaUploader):
+#
+#     def __init__ (self, vk_token, yd_token):
+#         vk_token = vk_token
+#         yd_token = yd_token
 
-    def __init__ (self, vk_token, yd_token):
-        vk_token = vk_token
-        yd_token = yd_token
 
 if __name__ == '__main__':
     # backup = BackupMain(vk_token, yd_token)
-    vk = VkDownloader(10406825, vk_token)
+    vk = VkDownloader(538993, vk_token)
     yd = YaUploader(yd_token)
-    print(vk.data_parser(10406825, vk_token))
-    print(vk.rename_dups())
-    print(vk.make_link_list())
-    print(vk.data_download())
-    print(yd.upload_file(vk.upload_best_list(5)))
+    vk.data_parser(538993, vk_token)
+    vk.rename_dups()
+    vk.make_link_list()
+    vk.data_download()
+    yd.upload_file(vk.upload_best_list(5))
