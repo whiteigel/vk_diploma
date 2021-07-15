@@ -7,6 +7,8 @@ OUTPUT_PATH = os.path.join(os.getcwd(), 'output.json')
 DOWNLOAD_PATH = os.path.join(os.getcwd(), 'downloads')
 LOG_PATH = os.path.join(os.getcwd(), 'all.log')
 Y_DISK_PATH = 'test'
+PHOTOS_TO_UPLOAD = 5
+VK_ID = 10406825
 
 with open('vk_secret.txt', 'r') as file_object:
     vk_token = file_object.read().strip()
@@ -83,8 +85,8 @@ class VkDownloader:
 
             urllib.request.urlretrieve(link, local_path)
             log_time = datetime.datetime.now()
-            print(f'{log_time}: Фото {file_name} загружено на локальный диск в папку {DOWNLOAD_PATH}')
-            self.logger(f'{log_time}: Фото {file_name} загружено на локальный диск в папку {DOWNLOAD_PATH} \n')
+            print(f'{log_time}: Фото "{file_name}" загружено на локальный диск в папку {DOWNLOAD_PATH}')
+            self.logger(f'{log_time}: Фото "{file_name}" загружено на локальный диск в папку {DOWNLOAD_PATH} \n')
             json_data = {'file_name': file_name, 'size': size_type}
             self.json_list.append(json_data)
 
@@ -120,8 +122,12 @@ class YaUploader:
         headers = self.get_ya_headers()
         params = {"path": Y_DISK_PATH, "overwrite": "true"}
         response = requests.put(url, headers=headers, params=params)
-        href = response.json()['href']
-        return href
+        if response.status_code == 201:
+            print(f'Папка "{Y_DISK_PATH}" создана')
+        else:
+            print(f'Папка "{Y_DISK_PATH}" уже существует по указанному адресу')
+        # href = response.json()['href']
+        # return href
 
     def get_upload_link(self, Y_DISK_PATH):
         upload_url = "https://cloud-api.yandex.net/v1/disk/resources/upload"
@@ -148,11 +154,11 @@ class YaUploader:
 
 
 if __name__ == '__main__':
-    vk = VkDownloader(10406825, vk_token)
+    vk = VkDownloader(VK_ID, vk_token)
     yd = YaUploader(yd_token)
-    vk.data_parser(10406825, vk_token)
+    vk.data_parser(VK_ID, vk_token)
     vk.rename_duplicates()
     vk.make_link_list()
     vk.data_download()
     yd.create_dir(Y_DISK_PATH)
-    yd.upload_file(vk.upload_best_list(5))
+    yd.upload_file(vk.upload_best_list(PHOTOS_TO_UPLOAD))
