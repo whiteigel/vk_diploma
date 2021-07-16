@@ -43,13 +43,11 @@ class VkDownloader:
         }
         response = requests.get(url, params=params)
         self.res = response.json()['response']['items']
-        # pprint(self.res)
         return self.res
 
     def rename_duplicates(self):
         for ind, elm in enumerate(self.res):
             likes = str(elm['likes']['count'])
-            # print(likes)
             date = int(elm['date'])
             date_to_photo = datetime.datetime.fromtimestamp(date).strftime('%Y-%m-%d')
             date_to_photo = str(date_to_photo)
