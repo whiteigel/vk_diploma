@@ -1,145 +1,22 @@
-2021-07-15 15:25:13.179476: Фото 79.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:25:14.097195: Фото 45.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:25:14.847293: Фото 10.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:25:15.460454: Фото 32_0.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:25:16.023590: Фото 32_1.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:25:16.628644: Фото 50.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:25:17.267756: Фото 36.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:25:17.927419: Фото 33.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:25:18.530663: Фото 37_0.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:25:19.013886: Фото 18_1.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:25:19.662375: Фото 22.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:25:20.264121: Фото 41.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:25:20.991155: Фото 37_1.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:25:21.482788: Фото 13.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:25:22.026518: Фото 18_0.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:25:22.955060: Фото 12.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:25:23.554862: Фото 21.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:25:28.450729: Фото "79.jpg" загружено на Yandex.Disk в папку test 
-2021-07-15 15:25:35.890762: Фото "45.jpg" загружено на Yandex.Disk в папку test 
-2021-07-15 15:25:38.218131: Фото "10.jpg" загружено на Yandex.Disk в папку test 
-2021-07-15 15:25:40.685419: Фото "32_0.jpg" загружено на Yandex.Disk в папку test 
-2021-07-15 15:25:50.320583: Фото "32_1.jpg" загружено на Yandex.Disk в папку test 
-2021-07-15 15:33:57.329412: Фото 79.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:33:57.992927: Фото 45.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:33:58.573903: Фото 10.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:33:59.093846: Фото 32_0.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:33:59.601269: Фото 32_1.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:34:00.171780: Фото 50.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:34:00.802826: Фото 36.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:34:01.427254: Фото 33.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:34:02.034950: Фото 37_0.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:34:02.529674: Фото 18_1.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:34:03.005511: Фото 22.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:34:03.502702: Фото 41.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:34:04.192527: Фото 37_1.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:34:04.638108: Фото 13.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:34:05.166887: Фото 18_0.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:34:06.026931: Фото 12.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:34:06.607455: Фото 21.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:37:14.213774: Фото 79.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:37:14.820814: Фото 45.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:37:15.441899: Фото 10.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:37:15.962427: Фото 32_0.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:37:16.423057: Фото 32_1.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:37:17.022809: Фото 50.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:37:17.567890: Фото 36.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:37:18.066573: Фото 33.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:37:18.624564: Фото 37_0.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:37:19.098452: Фото 18_1.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:37:19.550948: Фото 22.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:37:20.080555: Фото 41.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:37:20.625118: Фото 37_1.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:37:21.026572: Фото 13.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:37:21.547217: Фото 18_0.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:37:22.368217: Фото 12.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:37:22.863108: Фото 21.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:37:37.545558: Фото "79.jpg" загружено на Yandex.Disk в папку test 
-2021-07-15 15:37:44.457594: Фото "45.jpg" загружено на Yandex.Disk в папку test 
-2021-07-15 15:37:48.452053: Фото "10.jpg" загружено на Yandex.Disk в папку test 
-2021-07-15 15:38:00.513753: Фото "32_0.jpg" загружено на Yandex.Disk в папку test 
-2021-07-15 15:38:09.237325: Фото "32_1.jpg" загружено на Yandex.Disk в папку test 
-2021-07-15 15:39:30.006957: Фото 79.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:39:30.653019: Фото 45.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:39:31.275705: Фото 10.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:39:31.821148: Фото 32_0.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:39:32.403283: Фото 32_1.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:39:32.887744: Фото 50.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:39:33.437303: Фото 36.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:39:33.979030: Фото 33.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:39:34.529010: Фото 37_0.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:39:35.083504: Фото 18_1.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:39:35.638028: Фото 22.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:39:36.158181: Фото 41.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:39:36.710590: Фото 37_1.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:39:37.111381: Фото 13.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:39:37.617548: Фото 18_0.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:39:38.422592: Фото 12.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:39:38.986122: Фото 21.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:39:50.178375: Фото "79.jpg" загружено на Yandex.Disk в папку test 
-2021-07-15 15:40:08.232061: Фото 79.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:40:08.840138: Фото 45.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:40:09.395843: Фото 10.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:40:09.906040: Фото 32_0.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:40:10.480846: Фото 32_1.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:40:10.964582: Фото 50.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:40:11.525499: Фото 36.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:40:11.987439: Фото 33.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:40:12.508983: Фото 37_0.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:40:12.937478: Фото 18_1.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:40:13.345870: Фото 22.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:40:13.771033: Фото 41.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:40:14.398449: Фото 37_1.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:40:14.758719: Фото 13.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:40:15.286559: Фото 18_0.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:40:16.067359: Фото 12.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:40:16.537104: Фото 21.jpg загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-15 15:40:26.456776: Фото "79.jpg" загружено на Yandex.Disk в папку test 
-2021-07-15 15:40:32.644717: Фото "45.jpg" загружено на Yandex.Disk в папку test 
-2021-07-15 15:40:41.221609: Фото "10.jpg" загружено на Yandex.Disk в папку test 
-2021-07-15 15:40:43.762391: Фото "32_0.jpg" загружено на Yandex.Disk в папку test 
-2021-07-15 15:40:48.661758: Фото "32_1.jpg" загружено на Yandex.Disk в папку test 
-2021-07-16 13:56:38.304698: Фото "79.jpg" загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-16 13:56:38.898788: Фото "45.jpg" загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-16 13:56:39.545797: Фото "10.jpg" загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-16 13:56:40.078854: Фото "32.jpg" загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-16 13:56:40.645166: Фото "32_1421203586.jpg" загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-16 13:56:41.195173: Фото "50.jpg" загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-16 13:56:41.855106: Фото "36.jpg" загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-16 13:56:42.366635: Фото "33.jpg" загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-16 13:56:42.967947: Фото "37.jpg" загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-16 13:56:43.474884: Фото "18_1514450583.jpg" загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-16 13:56:43.974407: Фото "22.jpg" загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-16 13:56:44.595721: Фото "41.jpg" загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-16 13:56:45.291723: Фото "37_1342376520.jpg" загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-16 13:56:45.732528: Фото "13.jpg" загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-16 13:56:46.226853: Фото "18.jpg" загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-16 13:56:47.020987: Фото "12.jpg" загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-16 13:56:47.605698: Фото "21.jpg" загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-16 13:56:52.602787: Фото "79.jpg" загружено на Yandex.Disk в папку test 
-2021-07-16 13:56:55.568043: Фото "45.jpg" загружено на Yandex.Disk в папку test 
-2021-07-16 13:56:58.412577: Фото "10.jpg" загружено на Yandex.Disk в папку test 
-2021-07-16 13:57:00.589616: Фото "32.jpg" загружено на Yandex.Disk в папку test 
-2021-07-16 13:57:08.539260: Фото "32_1421203586.jpg" загружено на Yandex.Disk в папку test 
-2021-07-16 13:59:25.267819: Фото "79.jpg" загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-16 13:59:25.902176: Фото "45.jpg" загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-16 13:59:26.510373: Фото "10.jpg" загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-16 13:59:26.985684: Фото "32.jpg" загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-16 13:59:27.503719: Фото "32_2015-01-14.jpg" загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-16 13:59:28.001630: Фото "50.jpg" загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-16 13:59:28.496591: Фото "36.jpg" загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-16 13:59:29.039674: Фото "33.jpg" загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-16 13:59:29.555888: Фото "37.jpg" загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-16 13:59:30.104013: Фото "18_2017-12-28.jpg" загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-16 13:59:30.574889: Фото "22.jpg" загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-16 13:59:31.017780: Фото "41.jpg" загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-16 13:59:31.636179: Фото "37_2012-07-15.jpg" загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-16 13:59:32.009891: Фото "13.jpg" загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-16 13:59:32.492181: Фото "18.jpg" загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-16 13:59:33.299543: Фото "12.jpg" загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-16 13:59:33.876099: Фото "21.jpg" загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
-2021-07-16 13:59:42.811838: Фото "79.jpg" загружено на Yandex.Disk в папку test 
-2021-07-16 13:59:45.742777: Фото "45.jpg" загружено на Yandex.Disk в папку test 
-2021-07-16 13:59:48.251525: Фото "10.jpg" загружено на Yandex.Disk в папку test 
-2021-07-16 13:59:55.528086: Фото "32.jpg" загружено на Yandex.Disk в папку test 
-2021-07-16 13:59:58.140862: Фото "32_2015-01-14.jpg" загружено на Yandex.Disk в папку test 
+2021-07-16 18:05:49.472872: Фото "79.jpg" загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
+2021-07-16 18:05:50.050846: Фото "45.jpg" загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
+2021-07-16 18:05:50.596286: Фото "10.jpg" загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
+2021-07-16 18:05:51.203881: Фото "32.jpg" загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
+2021-07-16 18:05:51.708532: Фото "32_2015-01-14.jpg" загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
+2021-07-16 18:05:52.186793: Фото "50.jpg" загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
+2021-07-16 18:05:53.045692: Фото "36.jpg" загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
+2021-07-16 18:05:53.640316: Фото "33.jpg" загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
+2021-07-16 18:05:54.164893: Фото "37.jpg" загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
+2021-07-16 18:05:54.640933: Фото "18_2017-12-28.jpg" загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
+2021-07-16 18:05:55.094982: Фото "22.jpg" загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
+2021-07-16 18:05:55.598139: Фото "41.jpg" загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
+2021-07-16 18:05:56.204995: Фото "37_2012-07-15.jpg" загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
+2021-07-16 18:05:56.573846: Фото "13.jpg" загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
+2021-07-16 18:05:57.041218: Фото "18.jpg" загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
+2021-07-16 18:05:57.779274: Фото "12.jpg" загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
+2021-07-16 18:05:58.308091: Фото "21.jpg" загружено на локальный диск в папку /Users/sergeyvolodin/projects/python/vk_diploma/downloads 
+2021-07-16 18:06:02.707141: Фото "79.jpg" загружено на Yandex.Disk в папку test 
+2021-07-16 18:06:06.983403: Фото "45.jpg" загружено на Yandex.Disk в папку test 
+2021-07-16 18:06:10.222970: Фото "10.jpg" загружено на Yandex.Disk в папку test 
+2021-07-16 18:06:14.274426: Фото "32.jpg" загружено на Yandex.Disk в папку test 
+2021-07-16 18:06:16.161232: Фото "32_2015-01-14.jpg" загружено на Yandex.Disk в папку test 

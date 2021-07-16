@@ -2,7 +2,6 @@ import os
 import requests
 import urllib.request
 import datetime
-from pprint import pprint
 
 OUTPUT_PATH = os.path.join(os.getcwd(), 'output.json')
 DOWNLOAD_PATH = os.path.join(os.getcwd(), 'downloads')
@@ -31,7 +30,6 @@ class VkDownloader:
         self.json_list = []
         self.json_data = {}
         self.like_data = []
-
 
     def data_parser(self, vk_id, token):
         url = 'https://api.vk.com/method/photos.get'
@@ -156,12 +154,18 @@ class YaUploader:
             log.writelines(str(log_item))
 
 
+class PhotoBackup:
+    def __init__(self):
+
+        vk = VkDownloader(VK_ID, vk_token)
+        yd = YaUploader(yd_token)
+        vk.data_parser(VK_ID, vk_token)
+        vk.rename_duplicates()
+        vk.make_link_list()
+        vk.data_download()
+        yd.create_dir(Y_DISK_PATH)
+        yd.upload_file(vk.upload_best_list(PHOTOS_TO_UPLOAD))
+
+
 if __name__ == '__main__':
-    vk = VkDownloader(VK_ID, vk_token)
-    yd = YaUploader(yd_token)
-    vk.data_parser(VK_ID, vk_token)
-    vk.rename_duplicates()
-    vk.make_link_list()
-    vk.data_download()
-    yd.create_dir(Y_DISK_PATH)
-    yd.upload_file(vk.upload_best_list(PHOTOS_TO_UPLOAD))
+    photo_bak = PhotoBackup()
