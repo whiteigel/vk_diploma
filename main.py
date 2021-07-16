@@ -2,6 +2,7 @@ import os
 import requests
 import urllib.request
 import datetime
+from pprint import pprint
 
 OUTPUT_PATH = os.path.join(os.getcwd(), 'output.json')
 DOWNLOAD_PATH = os.path.join(os.getcwd(), 'downloads')
@@ -31,6 +32,7 @@ class VkDownloader:
         self.json_data = {}
         self.like_data = []
 
+
     def data_parser(self, vk_id, token):
         url = 'https://api.vk.com/method/photos.get'
         params = {
@@ -43,17 +45,20 @@ class VkDownloader:
         }
         response = requests.get(url, params=params)
         self.res = response.json()['response']['items']
+        # pprint(self.res)
         return self.res
 
     def rename_duplicates(self):
-        init_likes_list = []
         for ind, elm in enumerate(self.res):
             likes = str(elm['likes']['count'])
-            init_likes_list.append(likes)
-        for ind, elm in enumerate(init_likes_list):
-            total_count = init_likes_list.count(elm)
-            count = init_likes_list[:ind].count(elm)
-            self.new_likes_list.append(elm + '_' + str(count) if total_count > 1 else elm)
+            # print(likes)
+            date = int(elm['date'])
+            date_to_photo = datetime.datetime.fromtimestamp(date).strftime('%Y-%m-%d')
+            date_to_photo = str(date_to_photo)
+            if self.new_likes_list.count(likes) == 1:
+                self.new_likes_list.append(likes + '_' + date_to_photo)
+            else:
+                self.new_likes_list.append(likes)
         return self.new_likes_list
 
     def make_link_list(self):
@@ -126,8 +131,6 @@ class YaUploader:
             print(f'Папка "{Y_DISK_PATH}" создана')
         else:
             print(f'Папка "{Y_DISK_PATH}" уже существует по указанному адресу')
-        # href = response.json()['href']
-        # return href
 
     def get_upload_link(self, Y_DISK_PATH):
         upload_url = "https://cloud-api.yandex.net/v1/disk/resources/upload"
