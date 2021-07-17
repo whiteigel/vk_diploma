@@ -5,10 +5,12 @@ import datetime
 
 OUTPUT_PATH = os.path.join(os.getcwd(), 'output.json')
 DOWNLOAD_PATH = os.path.join(os.getcwd(), 'downloads')
+
 LOG_PATH = os.path.join(os.getcwd(), 'all.log')
 Y_DISK_PATH = 'test'
 PHOTOS_TO_UPLOAD = 5
 VK_ID = 10406825
+ALBUM_ID = 'profile'
 
 with open('vk_secret.txt', 'r') as file_object:
     vk_token = file_object.read().strip()
@@ -17,11 +19,18 @@ with open('yd_secret.txt', 'r') as file_object:
     yd_token = file_object.read().strip()
 
 
+def logger(message):
+    log_item = message
+    with open(LOG_PATH, "a") as log:
+        log.writelines(str(log_item))
+
+
 class VkDownloader:
     def __init__(self, vk_id, vk_token):
         self.id = vk_id
         self.vk_token = vk_token
         self.res = []
+        self.res_album = []
         self.new_likes_list = []
         self.link_list = []
         self.upload_list = []
@@ -31,13 +40,13 @@ class VkDownloader:
         self.json_data = {}
         self.like_data = []
 
-    def data_parser(self, vk_id, token):
+    def data_parser(self, vk_id, token, album_id):
         url = 'https://api.vk.com/method/photos.get'
         params = {
             'user_id': vk_id,
             'access_token': token,
             'v': '5.77',
-            'album_id': 'profile',
+            'album_id': album_id,
             'extended': 1,
             'photo_sizes': 1
         }
@@ -87,7 +96,7 @@ class VkDownloader:
             urllib.request.urlretrieve(link, local_path)
             log_time = datetime.datetime.now()
             print(f'{log_time}: Фото "{file_name}" загружено на локальный диск в папку {DOWNLOAD_PATH}')
-            self.logger(f'{log_time}: Фото "{file_name}" загружено на локальный диск в папку {DOWNLOAD_PATH} \n')
+            logger(f'{log_time}: Фото "{file_name}" загружено на локальный диск в папку {DOWNLOAD_PATH} \n')
             json_data = {'file_name': file_name, 'size': size_type}
             self.json_list.append(json_data)
 
@@ -101,11 +110,6 @@ class VkDownloader:
             if ind <= photo_quantity-1:
                 self.upload_list.append(elm)
         return self.upload_list
-
-    def logger(self, message):
-        log_item = message
-        with open(LOG_PATH, "a") as log:
-            log.writelines(str(log_item))
 
 
 class YaUploader:
@@ -144,12 +148,7 @@ class YaUploader:
             if response.status_code == 201:
                 log_time = datetime.datetime.now()
                 print(f'{log_time}: Фото "{elm[0]}" загружено на Yandex.Disk в папку {Y_DISK_PATH}')
-                self.logger(f'{log_time}: Фото "{elm[0]}" загружено на Yandex.Disk в папку {Y_DISK_PATH} \n')
-
-    def logger(self, message):
-        log_item = message
-        with open(LOG_PATH, "a") as log:
-            log.writelines(str(log_item))
+                logger(f'{log_time}: Фото "{elm[0]}" загружено на Yandex.Disk в папку {Y_DISK_PATH} \n')
 
 
 class PhotoBackup:
@@ -157,7 +156,7 @@ class PhotoBackup:
 
         vk = VkDownloader(VK_ID, vk_token)
         yd = YaUploader(yd_token)
-        vk.data_parser(VK_ID, vk_token)
+        vk.data_parser(VK_ID, vk_token, ALBUM_ID)
         vk.rename_duplicates()
         vk.make_link_list()
         vk.data_download()
