@@ -9,8 +9,9 @@ DOWNLOAD_PATH = os.path.join(os.getcwd(), 'downloads')
 LOG_PATH = os.path.join(os.getcwd(), 'all.log')
 Y_DISK_PATH = 'test'
 PHOTOS_TO_UPLOAD = 5
-VK_ID = 10406825
+VK_ID = vk_id
 ALBUM_ID = 'profile'
+
 
 with open('vk_secret.txt', 'r') as file_object:
     vk_token = file_object.read().strip()
@@ -58,7 +59,7 @@ class VkDownloader:
         for ind, elm in enumerate(self.res):
             likes = str(elm['likes']['count'])
             date = int(elm['date'])
-            date_to_photo = datetime.datetime.fromtimestamp(date).strftime('%Y-%m-%d')
+            date_to_photo = datetime.datetime.fromtimestamp(date).strftime('%Y-%m-%d-%H-%M-%S')
             date_to_photo = str(date_to_photo)
             if self.new_likes_list.count(likes) == 1:
                 self.new_likes_list.append(likes + '_' + date_to_photo)
