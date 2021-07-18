@@ -13,25 +13,30 @@ def create_download_dir(dir_name):
     return dir_name
 
 
-LOG_NAME = 'main.log'
+def create_file(file_name):
+    if not os.path.exists(file_name):
+        with open(file_name, 'w'):
+            print(f'Файл "{file_name}" cоздан')
+    else:
+        print(f'Файл "{file_name}" уже существует')
+    return file_name
 
-if not os.path.exists(LOG_NAME):
-    with open(LOG_NAME, 'w'):
-        pass
 
-JSON_NAME = 'output.json'
+def logger(message):
+    log_item = message
+    with open(LOG_PATH, "a") as log:
+        log.writelines(str(log_item))
 
-if not os.path.exists(LOG_NAME):
-    with open(LOG_NAME, 'w'):
-        pass
 
 DIR_NAME = create_download_dir('downloads')
 DOWNLOAD_PATH = os.path.join(os.getcwd(), DIR_NAME)
+JSON_NAME = create_file('output.json')
 OUTPUT_PATH = os.path.join(os.getcwd(), JSON_NAME)
+LOG_NAME = create_file('main.log')
 LOG_PATH = os.path.join(os.getcwd(), LOG_NAME)
 Y_DISK_PATH = 'test'
 PHOTOS_TO_UPLOAD = 5
-VK_ID = 'vk_id'
+VK_ID = 10406825
 ALBUM_ID = 'profile'
 
 
@@ -40,12 +45,6 @@ with open('vk_secret.txt', 'r') as file_object:
 
 with open('yd_secret.txt', 'r') as file_object:
     yd_token = file_object.read().strip()
-
-
-def logger(message):
-    log_item = message
-    with open(LOG_PATH, "a") as log:
-        log.writelines(str(log_item))
 
 
 class VkDownloader:
