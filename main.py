@@ -16,7 +16,7 @@ def create_download_dir(dir_name):
 def create_file(file_name):
     if not os.path.exists(file_name):
         with open(file_name, 'w'):
-            print(f'Файл "{file_name}" cоздан')
+            print(f'Файл "{file_name}" создан')
     else:
         print(f'Файл "{file_name}" уже существует')
     return file_name
@@ -52,7 +52,6 @@ class VkDownloader:
         self.id = vk_id
         self.vk_token = vk_token
         self.res = []
-        self.res_album = []
         self.new_likes_list = []
         self.link_list = []
         self.upload_list = []
@@ -117,8 +116,9 @@ class VkDownloader:
 
             urllib.request.urlretrieve(link, local_path)
             log_time = datetime.datetime.now()
-            print(f'{log_time}: Фото "{file_name}" загружено на локальный диск в папку {DOWNLOAD_PATH}')
-            logger(f'{log_time}: Фото "{file_name}" загружено на локальный диск в папку {DOWNLOAD_PATH} \n')
+            message = f'{log_time}: Фото "{file_name}" загружено на локальный диск в папку {DOWNLOAD_PATH}'
+            print(message)
+            logger(message + '\n')
             json_data = {'file_name': file_name, 'size': size_type}
             self.json_list.append(json_data)
 
@@ -169,8 +169,9 @@ class YaUploader:
             response.raise_for_status()
             if response.status_code == 201:
                 log_time = datetime.datetime.now()
-                print(f'{log_time}: Фото "{elm[0]}" загружено на Yandex.Disk в папку {Y_DISK_PATH}')
-                logger(f'{log_time}: Фото "{elm[0]}" загружено на Yandex.Disk в папку {Y_DISK_PATH} \n')
+                message = f'{log_time}: Фото "{elm[0]}" загружено на Yandex.Disk в папку {Y_DISK_PATH}'
+                print(message)
+                logger(message + '\n')
 
 
 class PhotoBackup:
