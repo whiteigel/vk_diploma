@@ -3,21 +3,37 @@ import requests
 import urllib.request
 import datetime
 
-DIR_NAME = 'downloads'
-OUTPUT_PATH = os.path.join(os.getcwd(), 'output.json')
-DOWNLOAD_PATH = os.path.join(os.getcwd(), DIR_NAME)
 
-LOG_PATH = os.path.join(os.getcwd(), 'all.log')
+def create_download_dir(dir_name):
+    if not os.path.exists(dir_name):
+        os.mkdir(dir_name)
+        print(f'Папка с именем "{dir_name}" создана')
+    else:
+        print(f'Папка с именем "{dir_name}" уже существует')
+    return dir_name
+
+
+LOG_NAME = 'main.log'
+
+if not os.path.exists(LOG_NAME):
+    with open(LOG_NAME, 'w'):
+        pass
+
+JSON_NAME = 'output.json'
+
+if not os.path.exists(LOG_NAME):
+    with open(LOG_NAME, 'w'):
+        pass
+
+DIR_NAME = create_download_dir('downloads')
+DOWNLOAD_PATH = os.path.join(os.getcwd(), DIR_NAME)
+OUTPUT_PATH = os.path.join(os.getcwd(), JSON_NAME)
+LOG_PATH = os.path.join(os.getcwd(), LOG_NAME)
 Y_DISK_PATH = 'test'
 PHOTOS_TO_UPLOAD = 5
 VK_ID = 'vk_id'
 ALBUM_ID = 'profile'
 
-if not os.path.exists(DIR_NAME):
-    os.mkdir(DIR_NAME)
-    print(f'Directory "{DIR_NAME}" created')
-else:
-    print(f'Directory "{DIR_NAME}" already exists')
 
 with open('vk_secret.txt', 'r') as file_object:
     vk_token = file_object.read().strip()
