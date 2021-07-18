@@ -36,7 +36,7 @@ LOG_NAME = create_file('main.log')
 LOG_PATH = os.path.join(os.getcwd(), LOG_NAME)
 Y_DISK_PATH = 'test'
 PHOTOS_TO_UPLOAD = 5
-VK_ID = 10406825
+VK_ID = 'vk_id'
 ALBUM_ID = 'profile'
 
 
