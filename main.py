@@ -2,23 +2,32 @@ import os
 import requests
 import urllib.request
 import datetime
+import telebot
 
 
 def create_download_dir(dir_name):
     if not os.path.exists(dir_name):
         os.mkdir(dir_name)
-        print(f'Папка с именем "{dir_name}" создана')
+        message = f'Папка с именем "{dir_name}" создана'
+        print(message)
+        telegram_alert(message)
     else:
-        print(f'Папка с именем "{dir_name}" уже существует')
+        message = f'Папка с именем "{dir_name}" уже существует'
+        print(message)
+        telegram_alert(message)
     return dir_name
 
 
 def create_file(file_name):
     if not os.path.exists(file_name):
         with open(file_name, 'w'):
-            print(f'Файл "{file_name}" создан')
+            message = f'Файл "{file_name}" создан'
+            print(message)
+            telegram_alert(message)
     else:
-        print(f'Файл "{file_name}" уже существует')
+        message = f'Файл "{file_name}" уже существует'
+        print(message)
+        telegram_alert(message)
     return file_name
 
 
@@ -28,6 +37,17 @@ def logger(message):
         log.writelines(str(log_item))
 
 
+def telegram_alert(message):
+    log_item = message
+    BOT.send_message(CHAT_ID, log_item)
+
+
+with open('tg_secret.txt', 'r') as file_object:
+    API_KEY = file_object.read().strip()
+
+BOT = telebot.TeleBot(API_KEY)
+
+CHAT_ID = 409799768
 DIR_NAME = create_download_dir('downloads')
 DOWNLOAD_PATH = os.path.join(os.getcwd(), DIR_NAME)
 JSON_NAME = create_file('output.json')
@@ -119,6 +139,7 @@ class VkDownloader:
             message = f'{log_time}: Фото "{file_name}" загружено на локальный диск в папку {DOWNLOAD_PATH}'
             print(message)
             logger(message + '\n')
+            telegram_alert(message)
             json_data = {'file_name': file_name, 'size': size_type}
             self.json_list.append(json_data)
 
@@ -150,9 +171,13 @@ class YaUploader:
         params = {"path": Y_DISK_PATH, "overwrite": "true"}
         response = requests.put(url, headers=headers, params=params)
         if response.status_code == 201:
-            print(f'Папка "{Y_DISK_PATH}" создана')
+            message = f'Папка "{Y_DISK_PATH}" создана'
+            print(message)
+            telegram_alert(message)
         else:
-            print(f'Папка "{Y_DISK_PATH}" уже существует по указанному адресу')
+            message = f'Папка "{Y_DISK_PATH}" уже существует по указанному адресу'
+            print(message)
+            telegram_alert(message)
 
     def get_upload_link(self, Y_DISK_PATH):
         upload_url = "https://cloud-api.yandex.net/v1/disk/resources/upload"
@@ -172,6 +197,7 @@ class YaUploader:
                 message = f'{log_time}: Фото "{elm[0]}" загружено на Yandex.Disk в папку {Y_DISK_PATH}'
                 print(message)
                 logger(message + '\n')
+                telegram_alert(message)
 
 
 class PhotoBackup:
