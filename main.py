@@ -47,7 +47,7 @@ with open('tg_secret.txt', 'r') as file_object:
 
 BOT = telebot.TeleBot(API_KEY)
 
-CHAT_ID = 409799768
+CHAT_ID = 'CHAT_ID' #your chat id
 DIR_NAME = create_download_dir('downloads')
 DOWNLOAD_PATH = os.path.join(os.getcwd(), DIR_NAME)
 JSON_NAME = create_file('output.json')
